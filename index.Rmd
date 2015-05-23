@@ -1,0 +1,98 @@
+---
+title       : Prediction
+subtitle    : Predicting MPG based on Weight and Transmission type
+author      : 
+job         : 
+framework   : io2012     # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+--- {class: class1, id: id1, bg: lightyellow}
+
+## Goal
+
+* Predict MPG using weight and transmission type
+
+* mtcars dataset is used to train the model
+
+* A simple linear model
+
+* Use the model to predict for new observations
+
+--- {class: class1, id: id1, bg: lightyellow}
+
+## Correlation Plot
+
+```{r, echo=FALSE}
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+```
+
+
+```{r,fig.width=10, fig.height=4}
+
+data(mtcars)
+
+mpg_plot <- ggplot(mtcars, aes(x = wt, y=mpg)) + geom_point()
+
+wt_plot <- ggplot(mtcars, aes(x = am, y=mpg)) + geom_point()
+
+multiplot(mpg_plot,wt_plot, cols=2)
+
+```
+
+--- {class: class1, id: id1, bg: lightyellow}
+## Model
+```{r}
+
+fit <- lm(mpg~wt+am, data=mtcars)
+
+summary(fit)
+
+```
+
+--- {class: class1, id: id1, bg: lightyellow}
+## Conclusion
+
+* The weight turns to be significant factor in determining the MPG
+
+* We have build a web page where we can provide new observations and predict the MPG
+
+* https://cvsekhar.shinyapps.io/dataproduct/
+
+
