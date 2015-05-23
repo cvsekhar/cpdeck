@@ -82,7 +82,7 @@ multiplot(mpg_plot,wt_plot, cols=2)
 
 fit <- lm(mpg~wt+am, data=mtcars)
 
-summary(fit)
+fit
 
 ```
 

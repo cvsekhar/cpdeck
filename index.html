@@ -84,28 +84,16 @@ multiplot(mpg_plot,wt_plot, cols=2)
   <article data-timings="">
     <pre><code class="r">fit &lt;- lm(mpg~wt+am, data=mtcars)
 
-summary(fit)
+fit
 </code></pre>
 
 <pre><code>## 
 ## Call:
 ## lm(formula = mpg ~ wt + am, data = mtcars)
 ## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -4.5295 -2.3619 -0.1317  1.4025  6.8782 
-## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) 37.32155    3.05464  12.218 5.84e-13 ***
-## wt          -5.35281    0.78824  -6.791 1.87e-07 ***
-## am          -0.02362    1.54565  -0.015    0.988    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 3.098 on 29 degrees of freedom
-## Multiple R-squared:  0.7528, Adjusted R-squared:  0.7358 
-## F-statistic: 44.17 on 2 and 29 DF,  p-value: 1.579e-09
+## (Intercept)           wt           am  
+##    37.32155     -5.35281     -0.02362
 </code></pre>
 
   </article>
